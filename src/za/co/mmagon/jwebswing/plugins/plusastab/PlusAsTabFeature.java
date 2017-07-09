@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,8 @@ import za.co.mmagon.jwebswing.plugins.ComponentInformation;
  *
  */
 @ComponentInformation(name = "Plus As Tab", description = "Allows you to automatically move to the next input field based on a key press", url = "https://github.com/joelpurra/plusastab")
-public class PlusAsTabFeature extends Feature<JavaScriptPart, Feature> implements IPlusAsTab
+public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
+        implements IPlusAsTab
 {
 
     private static final long serialVersionUID = 1L;
