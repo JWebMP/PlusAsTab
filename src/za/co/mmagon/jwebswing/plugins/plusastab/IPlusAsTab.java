@@ -17,16 +17,14 @@
 package za.co.mmagon.jwebswing.plugins.plusastab;
 
 /**
- *
  * @author GedMarc
  * @since 07 Feb 2017
- *
  */
 public interface IPlusAsTab
 {
 
-    Integer getKey();
+	Integer getKey();
 
-    PlusAsTabFeature setKey(Integer key);
+	PlusAsTabFeature setKey(Integer key);
 
 }

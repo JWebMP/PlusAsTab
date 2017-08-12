@@ -1,3 +1,10 @@
 {
-    "directory": "jar-resources/META-INF/resources/bower_components"
+  "directory": "jar-resources/META-INF/resources/bower_components",
+  "ignoredDependencies": [
+    "jquery",
+    "moment",
+	"jquery-simulate",
+	"qunit",
+	"console-shim"
+  ]
 }

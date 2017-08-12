@@ -23,89 +23,87 @@ import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
 
 /**
- *
  * @author GedMarc
  * @since 07 Feb 2017
- *
  */
 @ComponentInformation(name = "Plus As Tab", description = "Allows you to automatically move to the next input field based on a key press", url = "https://github.com/joelpurra/plusastab")
 public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
-        implements IPlusAsTab
+		implements IPlusAsTab
 {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "bower_components/emulatetab.joelpurra/index.js");
-    private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "bower_components/jquery-plusastab/src/plusastab.joelpurra.js");
+	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "bower_components/emulatetab.joelpurra/index.js");
+	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "bower_components/jquery-plusastab/src/plusastab.joelpurra.js");
 
-    private Integer key;
+	private Integer key;
 
-    public PlusAsTabFeature()
-    {
-        super("PlusAsTab");
-        getJavascriptReferences().add(jsReference);
-        getJavascriptReferences().add(jsReferenceActual);
-    }
+	public PlusAsTabFeature()
+	{
+		super("PlusAsTab");
+		getJavascriptReferences().add(jsReference);
+		getJavascriptReferences().add(jsReferenceActual);
+	}
 
-    public IPlusAsTab asMe()
-    {
-        return this;
-    }
+	public static <T extends ComponentHierarchyBase> T setFromComponent(T component)
+	{
+		component.addAttribute("data-plus-as-tab", "true");
+		return component;
+	}
 
-    @Override
-    public Integer getKey()
-    {
-        return key;
-    }
+	public static <T extends ComponentHierarchyBase> T setNotOnComponent(T component)
+	{
+		component.addAttribute("data-plus-as-tab", "false");
+		return component;
+	}
 
-    @Override
-    public PlusAsTabFeature setKey(Integer key)
-    {
-        this.key = key;
-        return this;
-    }
+	public IPlusAsTab asMe()
+	{
+		return this;
+	}
 
-    @Override
-    protected void assignFunctionsToComponent()
-    {
-        StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({").append("key: ")
-                .append(key == null ? "" : key)
-                .append("});");
+	@Override
+	public Integer getKey()
+	{
+		return key;
+	}
 
-        addQuery(sb);
-    }
+	@Override
+	public PlusAsTabFeature setKey(Integer key)
+	{
+		this.key = key;
+		return this;
+	}
 
-    public JavascriptReference getJsReference()
-    {
-        return jsReference;
-    }
+	@Override
+	protected void assignFunctionsToComponent()
+	{
+		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({").append("key: ")
+				.append(key == null ? "" : key)
+				.append("});");
 
-    public PlusAsTabFeature setJsReference(JavascriptReference jsReference)
-    {
-        this.jsReference = jsReference;
-        return this;
-    }
+		addQuery(sb);
+	}
 
-    public JavascriptReference getJsReferenceActual()
-    {
-        return jsReferenceActual;
-    }
+	public JavascriptReference getJsReference()
+	{
+		return jsReference;
+	}
 
-    public PlusAsTabFeature setJsReferenceActual(JavascriptReference jsReferenceActual)
-    {
-        this.jsReferenceActual = jsReferenceActual;
-        return this;
-    }
+	public PlusAsTabFeature setJsReference(JavascriptReference jsReference)
+	{
+		this.jsReference = jsReference;
+		return this;
+	}
 
-    public static <T extends ComponentHierarchyBase> T setFromComponent(T component)
-    {
-        component.addAttribute("data-plus-as-tab", "true");
-        return component;
-    }
+	public JavascriptReference getJsReferenceActual()
+	{
+		return jsReferenceActual;
+	}
 
-    public static <T extends ComponentHierarchyBase> T setNotOnComponent(T component)
-    {
-        component.addAttribute("data-plus-as-tab", "false");
-        return component;
-    }
+	public PlusAsTabFeature setJsReferenceActual(JavascriptReference jsReferenceActual)
+	{
+		this.jsReferenceActual = jsReferenceActual;
+		return this;
+	}
 }

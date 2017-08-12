@@ -3,7 +3,7 @@
 // Set up namespace, if needed
 var JoelPurra = JoelPurra || {};
 
-(function(document, $, namespace, pluginName) {
+(function (document, $, namespace, pluginName) {
     "use strict";
 
     var eventNamespace = "." + pluginName,
@@ -16,13 +16,13 @@ var JoelPurra = JoelPurra || {};
 
         // Private methods
         internal = {
-            escapeSelectorName: function(str) {
+            escapeSelectorName: function (str) {
                 // Based on http://api.jquery.com/category/selectors/
                 // Still untested
                 return str.replace(/(!"#$%&'\(\)\*\+,\.\/:;<=>\?@\[\]^`\{\|\}~)/g, "\\\\$1");
             },
 
-            findNextFocusable: function($from, offset) {
+            findNextFocusable: function ($from, offset) {
                 var $focusable = $(focusable)
                     .not(":disabled")
                     .not(":hidden")
@@ -49,15 +49,15 @@ var JoelPurra = JoelPurra || {};
                 return $next;
             },
 
-            focusInElement: function(event) {
+            focusInElement: function (event) {
                 lastFocusedElement = event.target;
             },
 
-            tryGetElementAsNonEmptyJQueryObject: function(selector) {
+            tryGetElementAsNonEmptyJQueryObject: function (selector) {
                 try {
                     var $element = $(selector);
 
-                    if ( !! $element && $element.size() !== 0) {
+                    if (!!$element && $element.size() !== 0) {
                         return $element;
                     }
                 } catch (e) {
@@ -76,7 +76,7 @@ var JoelPurra = JoelPurra || {};
             // Problem: http://jsfiddle.net/joelpurra/bzsv7/
             // Fixed:   http://jsfiddle.net/joelpurra/bzsv7/2/
 
-            getFocusedElement: function() {
+            getFocusedElement: function () {
                 // 1. Try the well-known, recommended method first.
                 //
                 // 2. Fall back to a fast method that might fail.
@@ -93,13 +93,13 @@ var JoelPurra = JoelPurra || {};
                 return $focused;
             },
 
-            emulateTabbing: function($from, offset) {
+            emulateTabbing: function ($from, offset) {
                 var $next = internal.findNextFocusable($from, offset);
 
                 $next.focus();
             },
 
-            initializeAtLoad: function() {
+            initializeAtLoad: function () {
                 // Start listener that keep track of the last focused element.
                 $(document)
                     .on("focusin" + eventNamespace, internal.focusInElement);
@@ -107,7 +107,7 @@ var JoelPurra = JoelPurra || {};
         },
 
         plugin = {
-            tab: function($from, offset) {
+            tab: function ($from, offset) {
                 // Tab from focused element with offset, .tab(-1)
                 if ($.isNumeric($from)) {
                     offset = $from;
@@ -121,34 +121,34 @@ var JoelPurra = JoelPurra || {};
                 internal.emulateTabbing($from, offset);
             },
 
-            forwardTab: function($from) {
+            forwardTab: function ($from) {
                 return plugin.tab($from, +1);
             },
 
-            reverseTab: function($from) {
+            reverseTab: function ($from) {
                 return plugin.tab($from, -1);
             },
 
-            getFocused: function() {
+            getFocused: function () {
                 return internal.getFocusedElement();
             }
         },
 
-        installJQueryExtensions = function() {
+        installJQueryExtensions = function () {
             $.extend({
-                emulateTab: function($from, offset) {
+                emulateTab: function ($from, offset) {
                     return plugin.tab($from, offset);
                 }
             });
 
             $.fn.extend({
-                emulateTab: function(offset) {
+                emulateTab: function (offset) {
                     return plugin.tab(this, offset);
                 }
             });
         },
 
-        init = function() {
+        init = function () {
             namespace[pluginName] = plugin;
 
             installJQueryExtensions();
