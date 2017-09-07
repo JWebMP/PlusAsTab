@@ -18,7 +18,6 @@ package za.co.mmagon.jwebswing.plugins.plusastab;
 
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
-import za.co.mmagon.jwebswing.base.references.JavascriptReference;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.ComponentInformation;
 
@@ -33,16 +32,13 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 
 	private static final long serialVersionUID = 1L;
 
-	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "bower_components/emulatetab.joelpurra/index.js");
-	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "bower_components/jquery-plusastab/src/plusastab.joelpurra.js");
-
+	
 	private Integer key;
 
 	public PlusAsTabFeature()
 	{
 		super("PlusAsTab");
-		getJavascriptReferences().add(jsReference);
-		getJavascriptReferences().add(jsReferenceActual);
+		
 	}
 
 	public static <T extends ComponentHierarchyBase> T setFromComponent(T component)
@@ -83,27 +79,5 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 				.append("});");
 
 		addQuery(sb);
-	}
-
-	public JavascriptReference getJsReference()
-	{
-		return jsReference;
-	}
-
-	public PlusAsTabFeature setJsReference(JavascriptReference jsReference)
-	{
-		this.jsReference = jsReference;
-		return this;
-	}
-
-	public JavascriptReference getJsReferenceActual()
-	{
-		return jsReferenceActual;
-	}
-
-	public PlusAsTabFeature setJsReferenceActual(JavascriptReference jsReferenceActual)
-	{
-		this.jsReferenceActual = jsReferenceActual;
-		return this;
 	}
 }

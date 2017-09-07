@@ -18,6 +18,7 @@ package za.co.mmagon.jwebswing.plugins.plusastab;
 
 import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.PageConfigurator;
+import za.co.mmagon.jwebswing.base.references.JavascriptReference;
 import za.co.mmagon.jwebswing.plugins.PluginInformation;
 
 /**
@@ -43,10 +44,18 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "bower_components/emulatetab.joelpurra/index.js");
+	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "bower_components/jquery-plusastab/src/plusastab.joelpurra.js");
+	
 	@Override
 	public Page configure(Page page)
 	{
+		if(!page.isConfigured())
+		{
+			page.getBody().getJavascriptReferences().add(jsReference);
+			page.getBody().getJavascriptReferences().add(jsReferenceActual);
+		}
 		return page;
 	}
 
