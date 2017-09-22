@@ -51,7 +51,7 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 	@Override
 	public Page configure(Page page)
 	{
-		if(!page.isConfigured())
+		if (!page.isConfigured())
 		{
 			page.getBody().getJavascriptReferences().add(jsReference);
 			page.getBody().getJavascriptReferences().add(jsReferenceActual);

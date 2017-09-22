@@ -3,8 +3,8 @@
   "ignoredDependencies": [
     "jquery",
     "moment",
-	"jquery-simulate",
-	"qunit",
-	"console-shim"
+    "jquery-simulate",
+    "qunit",
+    "console-shim"
   ]
 }
