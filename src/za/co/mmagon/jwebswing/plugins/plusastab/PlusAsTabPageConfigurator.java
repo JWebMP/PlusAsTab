@@ -18,6 +18,7 @@ package za.co.mmagon.jwebswing.plugins.plusastab;
 
 import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.PageConfigurator;
+import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
 import za.co.mmagon.jwebswing.base.references.JavascriptReference;
 import za.co.mmagon.jwebswing.plugins.PluginInformation;
 
@@ -48,6 +49,26 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "bower_components/emulatetab.joelpurra/index.js");
 	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "bower_components/jquery-plusastab/src/plusastab.joelpurra.js");
 	
+	/**
+	 * Sets the component to be included in the plus as tab option
+	 *
+	 * @param component
+	 */
+	public static void setOnComponent(ComponentHierarchyBase component)
+	{
+		component.addAttribute("data-plus-as-tab", "true");
+	}
+	
+	/**
+	 * Skips the plus as tab option for the given field
+	 *
+	 * @param component
+	 */
+	public static void setSkipComponent(ComponentHierarchyBase component)
+	{
+		component.addAttribute("data-plus-as-tab", "false");
+	}
+	
 	@Override
 	public Page configure(Page page)
 	{
@@ -55,8 +76,8 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 		{
 			page.getBody().getJavascriptReferences().add(jsReference);
 			page.getBody().getJavascriptReferences().add(jsReferenceActual);
+			page.getBody().addFeature(new PlusAsTabFeature());
 		}
 		return page;
 	}
-
 }

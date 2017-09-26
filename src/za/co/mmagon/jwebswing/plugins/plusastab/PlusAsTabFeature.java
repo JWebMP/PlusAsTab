@@ -75,10 +75,10 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 	protected void assignFunctionsToComponent()
 	{
 		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({").append("key: ")
-				.append(key == null ? "" : key)
+				.append(key == null ? "13" : key)
 				.append("});");
 		addQuery(sb);
 		
-		addQuery("JoelPurra.PlusOnTab.plusAsTab($('body'));");
+		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));");
 	}
 }
