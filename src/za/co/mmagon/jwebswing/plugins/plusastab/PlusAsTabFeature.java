@@ -76,9 +76,9 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 	{
 		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({").append("key: ")
 				.append(key == null ? "13" : key)
-				.append("});");
+				.append("});").append(getNewLine());
 		addQuery(sb);
 		
-		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));");
+		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
 	}
 }
