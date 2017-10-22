@@ -31,14 +31,12 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 {
 
 	private static final long serialVersionUID = 1L;
-
-	
 	private Integer key;
 
 	public PlusAsTabFeature()
 	{
 		super("PlusAsTab");
-		
+
 	}
 
 	public static <T extends ComponentHierarchyBase> T setFromComponent(T component)
@@ -75,10 +73,39 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 	protected void assignFunctionsToComponent()
 	{
 		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({").append("key: ")
-				.append(key == null ? "13" : key)
-				.append("});").append(getNewLine());
+				                   .append(key == null ? "13" : key)
+				                   .append("});").append(getNewLine());
 		addQuery(sb);
-		
+
 		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof PlusAsTabFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		PlusAsTabFeature that = (PlusAsTabFeature) o;
+
+		return getKey().equals(that.getKey());
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + getKey().hashCode();
+		return result;
 	}
 }
