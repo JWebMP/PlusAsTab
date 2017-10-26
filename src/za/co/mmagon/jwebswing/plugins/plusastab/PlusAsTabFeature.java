@@ -41,13 +41,13 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 
 	public static <T extends ComponentHierarchyBase> T setFromComponent(T component)
 	{
-		getComponent().addAttribute("data-plus-as-tab", "true");
+		component.addAttribute("data-plus-as-tab", "true");
 		return component;
 	}
 
 	public static <T extends ComponentHierarchyBase> T setNotOnComponent(T component)
 	{
-		getComponent().addAttribute("data-plus-as-tab", "false");
+		component.addAttribute("data-plus-as-tab", "false");
 		return component;
 	}
 
