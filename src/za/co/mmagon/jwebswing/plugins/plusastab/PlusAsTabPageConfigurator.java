@@ -57,6 +57,7 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 	public static void setOnComponent(ComponentHierarchyBase component)
 	{
 		component.addAttribute("data-plus-as-tab", "true");
+		component.addFeature(new PlusAsTabFeature());
 	}
 	
 	/**
