@@ -6,10 +6,10 @@ import za.co.mmagon.jwebswing.BaseTestClass;
 import za.co.mmagon.jwebswing.Page;
 import za.co.mmagon.jwebswing.generics.WebReference;
 
-class PlusAsTabPageConfiguratorTest extends BaseTestClass
+public class PlusAsTabPageConfiguratorTest extends BaseTestClass
 {
 	@Test
-	void configure()
+	public void configure()
 	{
 		Page p = getInstance();
 		System.out.println(p.toString(0));
@@ -18,7 +18,7 @@ class PlusAsTabPageConfiguratorTest extends BaseTestClass
 	}
 	
 	@Test
-	void configureMin()
+	public void configureMin()
 	{
 		Page p = getInstance();
 		WebReference.setUseMinAtEndOfExtension(true);
