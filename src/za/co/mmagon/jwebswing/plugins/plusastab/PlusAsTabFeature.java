@@ -104,8 +104,6 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + getKey().hashCode();
-		return result;
+		return super.hashCode();
 	}
 }
