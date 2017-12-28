@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,10 +45,10 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 {
 
 	private static final long serialVersionUID = 1L;
-	
-	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "bower_components/emulatetab.joelpurra/index.js");
-	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "bower_components/jquery-plusastab/src/plusastab.joelpurra.js");
-	
+
+	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "bower_components/emulatetab.joelpurra/emulateTab.min.js");
+	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "bower_components/jquery-plusastab/src/plusastab.joelpurra.min.js");
+
 	/**
 	 * Sets the component to be included in the plus as tab option
 	 *
@@ -59,7 +59,7 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 		component.addAttribute("data-plus-as-tab", "true");
 		component.addFeature(new PlusAsTabFeature());
 	}
-	
+
 	/**
 	 * Skips the plus as tab option for the given field
 	 *
@@ -69,7 +69,7 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 	{
 		component.addAttribute("data-plus-as-tab", "false");
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public Page configure(Page page)

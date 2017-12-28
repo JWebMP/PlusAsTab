@@ -13,17 +13,15 @@ public class PlusAsTabPageConfiguratorTest extends BaseTestClass
 	{
 		Page p = getInstance();
 		System.out.println(p.toString(0));
-		
+
 		System.out.println(p.renderJavascript());
 	}
-	
+
 	@Test
 	public void configureMin()
 	{
 		Page p = getInstance();
 		WebReference.setUseMinAtEndOfExtension(true);
-		
 		System.out.println(p.toString(0));
-		
 	}
 }

@@ -35,7 +35,7 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 
 	public PlusAsTabFeature()
 	{
-		super("PlusAsTab");
+		super("PlusAsTabFeature");
 
 	}
 
@@ -76,7 +76,6 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 				                   .append(key == null ? "13" : key)
 				                   .append("});").append(getNewLine());
 		addQuery(sb);
-
 		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
 	}
 

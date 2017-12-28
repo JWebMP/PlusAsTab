@@ -13,141 +13,142 @@
 // Set up namespace, if needed
 var JoelPurra = JoelPurra || {};
 
-(function ($, namespace) {
-    namespace.PlusAsTab = {};
+(function ($, namespace)
+{
+	namespace.PlusAsTab = {};
 
-    var eventNamespace = ".PlusAsTab";
+	var eventNamespace = ".PlusAsTab";
 
-    // Keys from
-    // http://api.jquery.com/event.which/
-    // https://developer.mozilla.org/en/DOM/KeyboardEvent#Virtual_key_codes
-    var KEY_NUM_PLUS = 107;
+	// Keys from
+	// http://api.jquery.com/event.which/
+	// https://developer.mozilla.org/en/DOM/KeyboardEvent#Virtual_key_codes
+	var KEY_NUM_PLUS = 107;
 
-    // Add options defaults here
-    var internalDefaults = {
-        key: KEY_NUM_PLUS
-    };
+	// Add options defaults here
+	var internalDefaults = {
+		key: KEY_NUM_PLUS
+	};
 
-    var options = $.extend(true, {}, internalDefaults);
+	var options = $.extend(true, {}, internalDefaults);
 
-    var enablePlusAsTab = ".plus-as-tab, [data-plus-as-tab=true]";
-    var disablePlusAsTab = ".disable-plus-as-tab, [data-plus-as-tab=false]";
+	var enablePlusAsTab = ".plus-as-tab, [data-plus-as-tab=true]";
+	var disablePlusAsTab = ".disable-plus-as-tab, [data-plus-as-tab=false]";
 
-    // Private functions
-    {
-        function performEmulatedTabbing(isTab, isReverse, $target) {
+	// Private functions
+	{
+		function performEmulatedTabbing(isTab, isReverse, $target) {
 
-            isTab = (isTab === true);
-            isReverse = (isReverse === true);
+			isTab = (isTab === true);
+			isReverse = (isReverse === true);
 
-            if (isTab
-                && $target !== undefined
-                && $target.length !== 0) {
+			if (isTab
+				&& $target !== undefined
+				&& $target.length !== 0) {
 
-                $target.emulateTab(isReverse ? -1 : +1);
+				$target.emulateTab(isReverse ? -1 : +1);
 
-                return true;
-            }
+				return true;
+			}
 
-            return false;
-        }
+			return false;
+		}
 
-        function isChosenTabkey(key) {
-            if (key === options.key
-                || ($.isArray(options.key)
-                    && $.inArray(key, options.key) !== -1)) {
+		function isChosenTabkey(key) {
+			if (key === options.key
+				|| ($.isArray(options.key)
+					&& $.inArray(key, options.key) !== -1)) {
 
-                return true;
-            }
+				return true;
+			}
 
-            return false;
-        }
+			return false;
+		}
 
-        function isEmulatedTabkey(event) {
+		function isEmulatedTabkey(event) {
 
-            // Checked later for reverse tab
-            //&& !event.shiftKey
+			// Checked later for reverse tab
+			//&& !event.shiftKey
 
-            if (!event.altKey
-                && !event.ctrlKey
-                && !event.metaKey
-                && isChosenTabkey(event.which)) {
+			if (!event.altKey
+				&& !event.ctrlKey
+				&& !event.metaKey
+				&& isChosenTabkey(event.which)) {
 
-                return true;
-            }
+				return true;
+			}
 
-            return false;
-        }
+			return false;
+		}
 
-        function checkEmulatedTabKeyDown(event) {
+		function checkEmulatedTabKeyDown(event) {
 
-            if (!isEmulatedTabkey(event)) {
+			if (!isEmulatedTabkey(event)) {
 
-                return;
-            }
+				return;
+			}
 
-            var $target = $(event.target);
+			var $target = $(event.target);
 
-            if ($target.is(disablePlusAsTab)
-                || $target.parents(disablePlusAsTab).length > 0
-                || (!$target.is(enablePlusAsTab)
-                    && $target.parents(enablePlusAsTab).length === 0)) {
+			if ($target.is(disablePlusAsTab)
+				|| $target.parents(disablePlusAsTab).length > 0
+				|| (!$target.is(enablePlusAsTab)
+					&& $target.parents(enablePlusAsTab).length === 0)) {
 
-                return;
-            }
+				return;
+			}
 
-            var wasDone = performEmulatedTabbing(true, event.shiftKey, $target);
+			var wasDone = performEmulatedTabbing(true, event.shiftKey, $target);
 
-            if (wasDone) {
+			if (wasDone) {
 
-                event.preventDefault();
-                event.stopPropagation();
-                event.stopImmediatePropagation();
+				event.preventDefault();
+				event.stopPropagation();
+				event.stopImmediatePropagation();
 
-                return false;
-            }
+				return false;
+			}
 
-            return;
-        }
+			return;
+		}
+		
+		function initializeAtLoad() {
 
-        function initializeAtLoad() {
+			$(document).on("keydown" + eventNamespace, checkEmulatedTabKeyDown);
+		}
+	}
 
-            $(document).on("keydown" + eventNamespace, checkEmulatedTabKeyDown);
-        }
-    }
+	// Public functions
+	{
+		namespace.PlusAsTab.setOptions = function (userOptions) {
 
-    // Public functions
-    {
-        namespace.PlusAsTab.setOptions = function (userOptions) {
+			// Merge the options onto the current options (usually the default values)
+			$.extend(true, options, userOptions);
+		};
 
-            // Merge the options onto the current options (usually the default values)
-            $.extend(true, options, userOptions);
-        };
+		namespace.PlusAsTab.plusAsTab = function ($elements, enable) {
 
-        namespace.PlusAsTab.plusAsTab = function ($elements, enable) {
+			enable = (enable === undefined ? true : enable === true);
 
-            enable = (enable === undefined ? true : enable === true);
+			return $elements.each(function () {
+					
+				var $this = $(this);
 
-            return $elements.each(function () {
+				$this
+					.not(disablePlusAsTab)
+					.not(enablePlusAsTab)
+					.attr("data-plus-as-tab", enable ? "true" : "false");
+			});
+		};
 
-                var $this = $(this);
+		$.fn.extend({
+			plusAsTab: function (enable) {
 
-                $this
-                    .not(disablePlusAsTab)
-                    .not(enablePlusAsTab)
-                    .attr("data-plus-as-tab", enable ? "true" : "false");
-            });
-        };
+				return namespace.PlusAsTab.plusAsTab(this, enable);
+			}
+		});
+	}
 
-        $.fn.extend({
-            plusAsTab: function (enable) {
-
-                return namespace.PlusAsTab.plusAsTab(this, enable);
-            }
-        });
-    }
-
-    // PlusAsTab initializes listeners when jQuery is ready
-    $(initializeAtLoad);
+	// PlusAsTab initializes listeners when jQuery is ready
+	$(initializeAtLoad);
 
 }(jQuery, JoelPurra));
