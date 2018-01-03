@@ -23,7 +23,7 @@ var JoelPurra = JoelPurra || {};
             findNextFocusable: function ($from, offset) {
                 var $focusable = $(focusable)
                     .not(":hidden")
-                    .not(":skipenter");
+                    .not(".skipenter");
 
                 if ($from[0].tagName === "INPUT" && $from[0].type === "radio" && $from[0].name !== "") {
                     var name = internal.escapeSelectorName($from[0].name);
