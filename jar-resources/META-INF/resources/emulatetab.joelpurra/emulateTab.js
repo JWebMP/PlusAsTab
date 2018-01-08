@@ -119,7 +119,7 @@ var JoelPurra = JoelPurra || {};
                     }, 100);
                 }
 
-                var $nextnext = internal.findNextFocusable($from, offset);
+                var $nextnext = internal.findNextFocusable($next, offset);
                 if ($nextnext.is('[type=submit],.autofire')) {
                     $nextnext.click();
                 }
