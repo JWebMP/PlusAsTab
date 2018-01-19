@@ -119,9 +119,8 @@ var JoelPurra = JoelPurra || {};
                     }, 100);
                 }
 
-                var $nextnext = internal.findNextFocusable($next, offset);
-                if ($nextnext.is('[type=submit],.autofire')) {
-                    $nextnext.click();
+                if ($next.is('[type=submit],.autofire,.btn,.button, button')) {
+                    $next.click();
                 }
             },
 
