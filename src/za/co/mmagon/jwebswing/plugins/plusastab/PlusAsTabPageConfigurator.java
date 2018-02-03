@@ -46,9 +46,9 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 
 	private static final long serialVersionUID = 1L;
 
-	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js", 61);
+	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
 	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0,
-	                                                                        "jquery-plusastab/src/plusastab.joelpurra.min.js", 62);
+	                                                                        "jquery-plusastab/src/plusastab.joelpurra.min.js");
 
 	/**
 	 * Sets the component to be included in the plus as tab option
