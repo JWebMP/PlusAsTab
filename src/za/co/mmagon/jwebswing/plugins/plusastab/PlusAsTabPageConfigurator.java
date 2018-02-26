@@ -51,17 +51,6 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 	                                                                        "jquery-plusastab/src/plusastab.joelpurra.min.js");
 
 	/**
-	 * Sets the component to be included in the plus as tab option
-	 *
-	 * @param component
-	 */
-	public static void setOnComponent(ComponentHierarchyBase component)
-	{
-		component.addAttribute("data-plus-as-tab", "true");
-		component.addFeature(new PlusAsTabFeature());
-	}
-
-	/**
 	 * Skips the plus as tab option for the given field
 	 *
 	 * @param component
@@ -80,6 +69,8 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 			page.getBody().getJavascriptReferences().add(jsReference);
 			page.getBody().getJavascriptReferences().add(jsReferenceActual);
 			page.getBody().addFeature(new PlusAsTabFeature());
+			page.getBody()
+					.addAttribute("data-plus-as-tab", "true");
 		}
 		return page;
 	}
