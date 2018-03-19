@@ -39,16 +39,15 @@ import za.co.mmagon.jwebswing.plugins.PluginInformation;
 		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/JQueryPlusAsTabPlugin.jar/download",
 		pluginIconUrl = "bower_components/jquery-plusastab/logo.png",
 		pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
-		pluginLastUpdatedDate = "2017/03/04"
-)
-public class PlusAsTabPageConfigurator extends PageConfigurator
+		pluginLastUpdatedDate = "2017/03/04")
+public class PlusAsTabPageConfigurator
+		extends PageConfigurator
 {
 
 	private static final long serialVersionUID = 1L;
 
 	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
-	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0,
-	                                                                        "jquery-plusastab/src/plusastab.joelpurra.min.js");
+	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
 
 	/**
 	 * Skips the plus as tab option for the given field
@@ -66,11 +65,16 @@ public class PlusAsTabPageConfigurator extends PageConfigurator
 	{
 		if (!page.isConfigured())
 		{
-			page.getBody().getJavascriptReferences().add(jsReference);
-			page.getBody().getJavascriptReferences().add(jsReferenceActual);
-			page.getBody().addFeature(new PlusAsTabFeature());
 			page.getBody()
-					.addAttribute("data-plus-as-tab", "true");
+			    .getJavascriptReferences()
+			    .add(jsReference);
+			page.getBody()
+			    .getJavascriptReferences()
+			    .add(jsReferenceActual);
+			page.getBody()
+			    .addFeature(new PlusAsTabFeature(page.getBody()));
+			page.getBody()
+			    .addAttribute("data-plus-as-tab", "true");
 		}
 		return page;
 	}

@@ -25,17 +25,21 @@ import za.co.mmagon.jwebswing.plugins.ComponentInformation;
  * @author GedMarc
  * @since 07 Feb 2017
  */
-@ComponentInformation(name = "Plus As Tab", description = "Allows you to automatically move to the next input field based on a key press", url = "https://github.com/joelpurra/plusastab")
-public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
+@ComponentInformation(name = "Plus As Tab",
+		description = "Allows you to automatically move to the next input field based on a key press",
+		url = "https://github.com/joelpurra/plusastab")
+public class PlusAsTabFeature
+		extends Feature<JavaScriptPart, PlusAsTabFeature>
 		implements IPlusAsTab
 {
 
 	private static final long serialVersionUID = 1L;
 	private Integer key;
 
-	public PlusAsTabFeature()
+	public PlusAsTabFeature(ComponentHierarchyBase component)
 	{
 		super("PlusAsTabFeature");
+		setComponent(component);
 
 	}
 
@@ -72,9 +76,11 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 	@Override
 	protected void assignFunctionsToComponent()
 	{
-		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({").append("key: ")
-				                   .append(key == null ? "13" : key)
-				                   .append("});").append(getNewLine());
+		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({")
+		                                      .append("key: ")
+		                                      .append(key == null ? "13" : key)
+		                                      .append("});")
+		                                      .append(getNewLine());
 		addQuery(sb);
 		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
 	}
@@ -82,27 +88,24 @@ public class PlusAsTabFeature extends Feature<JavaScriptPart, PlusAsTabFeature>
 	@Override
 	public boolean equals(Object o)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof PlusAsTabFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		PlusAsTabFeature that = (PlusAsTabFeature) o;
-
-		return getKey().equals(that.getKey());
+		return super.equals(o);
 	}
 
 	@Override
 	public int hashCode()
 	{
 		return super.hashCode();
+	}
+
+	@Override
+	public StringBuilder renderJavascript()
+	{
+		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({")
+		                                      .append("key: ")
+		                                      .append(key == null ? "13" : key)
+		                                      .append("});")
+		                                      .append(getNewLine());
+		sb.append("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
+		return sb;
 	}
 }
