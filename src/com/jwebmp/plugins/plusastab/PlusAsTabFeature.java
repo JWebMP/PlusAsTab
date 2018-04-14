@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package za.co.mmagon.jwebswing.plugins.plusastab;
+package com.jwebmp.plugins.plusastab;
 
-import za.co.mmagon.jwebswing.Feature;
-import za.co.mmagon.jwebswing.base.ComponentHierarchyBase;
-import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
-import za.co.mmagon.jwebswing.plugins.ComponentInformation;
+import com.jwebmp.Feature;
+import com.jwebmp.base.ComponentHierarchyBase;
+import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.plugins.ComponentInformation;
 
 /**
  * @author GedMarc
@@ -74,15 +74,9 @@ public class PlusAsTabFeature
 	}
 
 	@Override
-	protected void assignFunctionsToComponent()
+	public int hashCode()
 	{
-		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({")
-		                                      .append("key: ")
-		                                      .append(key == null ? "13" : key)
-		                                      .append("});")
-		                                      .append(getNewLine());
-		addQuery(sb);
-		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
+		return super.hashCode();
 	}
 
 	@Override
@@ -92,9 +86,15 @@ public class PlusAsTabFeature
 	}
 
 	@Override
-	public int hashCode()
+	protected void assignFunctionsToComponent()
 	{
-		return super.hashCode();
+		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({")
+		                                      .append("key: ")
+		                                      .append(key == null ? "13" : key)
+		                                      .append("});")
+		                                      .append(getNewLine());
+		addQuery(sb);
+		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
 	}
 
 	@Override
