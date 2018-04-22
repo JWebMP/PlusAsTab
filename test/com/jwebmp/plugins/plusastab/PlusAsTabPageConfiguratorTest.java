@@ -18,18 +18,17 @@
 package com.jwebmp.plugins.plusastab;
 
 
-import com.jwebmp.BaseTestClass;
 import com.jwebmp.Page;
 import com.jwebmp.generics.WebReference;
 import org.junit.jupiter.api.Test;
 
 public class PlusAsTabPageConfiguratorTest
-		extends BaseTestClass
+
 {
 	@Test
 	public void configure()
 	{
-		Page p = getInstance();
+		Page p = new Page();
 		System.out.println(p.toString(0));
 
 		System.out.println(p.renderJavascript());
@@ -38,7 +37,7 @@ public class PlusAsTabPageConfiguratorTest
 	@Test
 	public void configureMin()
 	{
-		Page p = getInstance();
+		Page p = new Page();
 		WebReference.setUseMinAtEndOfExtension(true);
 		System.out.println(p.toString(0));
 	}
