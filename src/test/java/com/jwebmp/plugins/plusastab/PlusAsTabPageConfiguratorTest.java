@@ -17,7 +17,6 @@
 
 package com.jwebmp.plugins.plusastab;
 
-
 import com.jwebmp.Page;
 import com.jwebmp.generics.WebReference;
 import org.junit.jupiter.api.Test;
