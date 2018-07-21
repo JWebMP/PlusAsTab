@@ -17,8 +17,8 @@
 
 package com.jwebmp.plugins.plusastab;
 
-import com.jwebmp.Page;
-import com.jwebmp.generics.WebReference;
+import com.jwebmp.core.Page;
+import com.jwebmp.core.generics.WebReference;
 import org.junit.jupiter.api.Test;
 
 public class PlusAsTabPageConfiguratorTest
