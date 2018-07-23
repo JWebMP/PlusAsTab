@@ -1,3 +1,6 @@
+import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.plugins.plusastab.PlusAsTabPageConfigurator;
+
 module com.jwebmp.plugins.plusastab {
 	exports com.jwebmp.plugins.plusastab;
 
@@ -7,4 +10,7 @@ module com.jwebmp.plugins.plusastab {
 
 	requires java.validation;
 	requires java.logging;
+
+	provides IPageConfigurator with PlusAsTabPageConfigurator;
+
 }

@@ -17,10 +17,10 @@
 package com.jwebmp.plugins.plusastab;
 
 import com.jwebmp.core.Page;
-import com.jwebmp.core.PageConfigurator;
 import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.services.IPageConfigurator;
 
 /**
  * @author GedMarc
@@ -41,10 +41,8 @@ import com.jwebmp.core.plugins.PluginInformation;
 		pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
 		pluginLastUpdatedDate = "2017/03/04")
 public class PlusAsTabPageConfigurator
-		extends PageConfigurator
+		implements IPageConfigurator
 {
-
-	private static final long serialVersionUID = 1L;
 
 	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
 	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
@@ -54,6 +52,7 @@ public class PlusAsTabPageConfigurator
 	 *
 	 * @param component
 	 */
+	@SuppressWarnings("unused")
 	public static void setSkipComponent(ComponentHierarchyBase component)
 	{
 		component.addAttribute("data-plus-as-tab", "false");
