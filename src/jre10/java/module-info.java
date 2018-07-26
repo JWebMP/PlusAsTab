@@ -12,5 +12,5 @@ module com.jwebmp.plugins.plusastab {
 	requires java.logging;
 
 	provides IPageConfigurator with PlusAsTabPageConfigurator;
-
+	opens com.jwebmp.plugins.plusastab to com.fasterxml.jackson.databind,com.jwebmp.core;
 }
