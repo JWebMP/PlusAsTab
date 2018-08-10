@@ -22,6 +22,8 @@ import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.services.IPageConfigurator;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author GedMarc
  */
@@ -58,6 +60,7 @@ public class PlusAsTabPageConfigurator
 		component.addAttribute("data-plus-as-tab", "false");
 	}
 
+	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
 	public Page configure(Page page)
