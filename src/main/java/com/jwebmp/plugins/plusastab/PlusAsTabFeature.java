@@ -21,6 +21,8 @@ import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.core.plugins.ComponentInformation;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author GedMarc
  * @since 07 Feb 2017
@@ -29,7 +31,7 @@ import com.jwebmp.core.plugins.ComponentInformation;
 		description = "Allows you to automatically move to the next input field based on a key press",
 		url = "https://github.com/joelpurra/plusastab")
 public class PlusAsTabFeature
-		extends Feature<JavaScriptPart, PlusAsTabFeature>
+		extends Feature<PlusAsTabFeature, JavaScriptPart, PlusAsTabFeature>
 		implements IPlusAsTab
 {
 
@@ -85,18 +87,7 @@ public class PlusAsTabFeature
 		return super.equals(o);
 	}
 
-	@Override
-	protected void assignFunctionsToComponent()
-	{
-		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({")
-		                                      .append("key: ")
-		                                      .append(key == null ? "13" : key)
-		                                      .append("});")
-		                                      .append(getNewLine());
-		addQuery(sb);
-		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
-	}
-
+	@NotNull
 	@Override
 	public StringBuilder renderJavascript()
 	{
@@ -107,5 +98,17 @@ public class PlusAsTabFeature
 		                                      .append(getNewLine());
 		sb.append("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
 		return sb;
+	}
+
+	@Override
+	protected void assignFunctionsToComponent()
+	{
+		StringBuilder sb = new StringBuilder().append("JoelPurra.PlusAsTab.setOptions({")
+		                                      .append("key: ")
+		                                      .append(key == null ? "13" : key)
+		                                      .append("});")
+		                                      .append(getNewLine());
+		addQuery(sb);
+		addQuery("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
 	}
 }
