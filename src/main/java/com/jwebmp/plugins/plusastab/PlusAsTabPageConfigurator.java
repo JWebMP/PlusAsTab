@@ -45,9 +45,37 @@ import javax.validation.constraints.NotNull;
 public class PlusAsTabPageConfigurator
 		implements IPageConfigurator
 {
-
+	/**
+	 * If this configurator is enabled
+	 */
+	private static boolean enabled = true;
 	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
 	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
+
+	/**
+	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @return the enabled (type boolean) of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static boolean isEnabled()
+	{
+		return PlusAsTabPageConfigurator.enabled;
+	}
+
+	/**
+	 * Method setEnabled sets the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @param mustEnable
+	 * 		the enabled of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static void setEnabled(boolean mustEnable)
+	{
+		PlusAsTabPageConfigurator.enabled = mustEnable;
+	}
 
 	/**
 	 * Skips the plus as tab option for the given field
@@ -79,5 +107,11 @@ public class PlusAsTabPageConfigurator
 			    .addAttribute("data-plus-as-tab", "true");
 		}
 		return page;
+	}
+
+	@Override
+	public boolean enabled()
+	{
+		return PlusAsTabPageConfigurator.enabled;
 	}
 }
