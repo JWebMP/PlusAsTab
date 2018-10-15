@@ -35,15 +35,15 @@ import javax.validation.constraints.NotNull;
 		pluginCategories = "plus-as-tab",
 		pluginSubtitle = "Make web and mobile pages 'enter'-friendly ",
 		pluginGitUrl = "https://github.com/joelpurra/plusastab.git",
-		pluginSourceUrl = "https://github.com/GedMarc/JWebSwing-JQueryPlusAsTabPlugin",
-		pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-JQueryPlusAsTabPlugin/wiki",
+		pluginSourceUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin/wiki",
 		pluginOriginalHomepage = "https://github.com/joelpurra/plusastab",
 		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/JQueryPlusAsTabPlugin.jar/download",
 		pluginIconUrl = "bower_components/jquery-plusastab/logo.png",
 		pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
 		pluginLastUpdatedDate = "2017/03/04")
 public class PlusAsTabPageConfigurator
-		implements IPageConfigurator
+		implements IPageConfigurator<PlusAsTabPageConfigurator>
 {
 	/**
 	 * If this configurator is enabled
