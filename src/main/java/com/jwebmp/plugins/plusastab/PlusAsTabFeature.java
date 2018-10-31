@@ -35,7 +35,7 @@ public class PlusAsTabFeature
 		implements IPlusAsTab
 {
 
-	private static final long serialVersionUID = 1L;
+
 	private Integer key;
 
 	public PlusAsTabFeature(ComponentHierarchyBase component)
