@@ -18,6 +18,6 @@
   ],
   "dependencies": {
     "jquery-plusastab": "^0.2.2",
-    "emulatetab.joelpurra": "https://cdn.rawgit.com/joelpurra/emulatetab/master/src/emulatetab.joelpurra.js"
+    "emulatetab.joelpurra": "https://cdn.jsdelivr.net/gh/joelpurra/emulatetab@master/src/emulatetab.joelpurra.js"
   }
 }

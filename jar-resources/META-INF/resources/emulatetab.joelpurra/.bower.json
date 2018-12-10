@@ -6,7 +6,7 @@
   },
   "_release": "e-tag:W/\"701e032",
   "main": "index.js",
-  "_source": "https://cdn.rawgit.com/joelpurra/emulatetab/master/src/emulatetab.joelpurra.js",
+  "_source": "https://cdn.jsdelivr.net/gh/joelpurra/emulatetab@master/src/emulatetab.joelpurra.js",
   "_target": "*",
-  "_originalSource": "https://cdn.rawgit.com/joelpurra/emulatetab/master/src/emulatetab.joelpurra.js"
+  "_originalSource": "https://cdn.jsdelivr.net/gh/joelpurra/emulatetab@master/src/emulatetab.joelpurra.js"
 }
