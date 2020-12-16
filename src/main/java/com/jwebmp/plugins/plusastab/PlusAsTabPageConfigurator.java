@@ -20,6 +20,7 @@ import com.jwebmp.core.Page;
 import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPageConfigurator;
 
 import jakarta.validation.constraints.NotNull;
@@ -38,10 +39,16 @@ import jakarta.validation.constraints.NotNull;
 		pluginSourceUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin",
 		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin/wiki",
 		pluginOriginalHomepage = "https://github.com/joelpurra/plusastab",
-		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/JQueryPlusAsTabPlugin.jar/download",
+		pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.javascript/jwebmp-plus-as-tab",
 		pluginIconUrl = "bower_components/jquery-plusastab/logo.png",
 		pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
-		pluginLastUpdatedDate = "2017/03/04")
+		pluginLastUpdatedDate = "2017/03/04",
+		pluginGroupId = "com.jwebmp.plugins.javascript",
+		pluginArtifactId = "jwebmp-plus-as-tab",
+		pluginModuleName = "com.jwebmp.plugins.plusastab",
+		pluginStatus = PluginStatus.Released
+		
+)
 public class PlusAsTabPageConfigurator
 		implements IPageConfigurator<PlusAsTabPageConfigurator>
 {
@@ -49,8 +56,9 @@ public class PlusAsTabPageConfigurator
 	 * If this configurator is enabled
 	 */
 	private static boolean enabled = true;
-	private JavascriptReference jsReference = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
-	private JavascriptReference jsReferenceActual = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
+	
+	private static JavascriptReference jsReferenceEmulateTab = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
+	private  static  JavascriptReference jsReferencePlusAsTab = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
 
 	/**
 	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
@@ -97,10 +105,10 @@ public class PlusAsTabPageConfigurator
 		{
 			page.getBody()
 			    .getJavascriptReferences()
-			    .add(jsReference);
+			    .add(jsReferenceEmulateTab);
 			page.getBody()
 			    .getJavascriptReferences()
-			    .add(jsReferenceActual);
+			    .add(jsReferencePlusAsTab);
 			page.getBody()
 			    .addFeature(new PlusAsTabFeature(page.getBody()));
 			page.getBody()
@@ -108,7 +116,27 @@ public class PlusAsTabPageConfigurator
 		}
 		return page;
 	}
-
+	
+	public static JavascriptReference getJsReferenceEmulateTab()
+	{
+		return jsReferenceEmulateTab;
+	}
+	
+	public static void setJsReferenceEmulateTab(JavascriptReference jsReferenceEmulateTab)
+	{
+		PlusAsTabPageConfigurator.jsReferenceEmulateTab = jsReferenceEmulateTab;
+	}
+	
+	public static JavascriptReference getJsReferencePlusAsTab()
+	{
+		return jsReferencePlusAsTab;
+	}
+	
+	public static void setJsReferencePlusAsTab(JavascriptReference jsReferencePlusAsTab)
+	{
+		PlusAsTabPageConfigurator.jsReferencePlusAsTab = jsReferencePlusAsTab;
+	}
+	
 	@Override
 	public boolean enabled()
 	{

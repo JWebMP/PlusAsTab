@@ -18,6 +18,7 @@ package com.jwebmp.plugins.plusastab;
 
 import com.jwebmp.core.Feature;
 import com.jwebmp.core.base.ComponentHierarchyBase;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.core.plugins.ComponentInformation;
 
@@ -31,29 +32,26 @@ import jakarta.validation.constraints.NotNull;
 		description = "Allows you to automatically move to the next input field based on a key press",
 		url = "https://github.com/joelpurra/plusastab")
 public class PlusAsTabFeature
-		extends Feature<PlusAsTabFeature, JavaScriptPart, PlusAsTabFeature>
+		extends Feature<PlusAsTabFeature, JavaScriptPart<?>, PlusAsTabFeature>
 		implements IPlusAsTab
 {
-
-
 	private Integer key;
 
-	public PlusAsTabFeature(ComponentHierarchyBase component)
+	public PlusAsTabFeature(IComponentHierarchyBase<?,?> component)
 	{
 		super("PlusAsTabFeature");
 		setComponent(component);
-
 	}
 
-	public static <T extends ComponentHierarchyBase> T setFromComponent(T component)
+	public static <T extends IComponentHierarchyBase<?,?>> T setFromComponent(T component)
 	{
-		component.addAttribute("data-plus-as-tab", "true");
+		component.asAttributeBase().addAttribute("data-plus-as-tab", "true");
 		return component;
 	}
 
-	public static <T extends ComponentHierarchyBase> T setNotOnComponent(T component)
+	public static <T extends IComponentHierarchyBase<?,?>> T setNotOnComponent(T component)
 	{
-		component.addAttribute("data-plus-as-tab", "false");
+		component.asAttributeBase().addAttribute("data-plus-as-tab", "false");
 		return component;
 	}
 
@@ -96,7 +94,8 @@ public class PlusAsTabFeature
 		                                      .append(key == null ? "13" : key)
 		                                      .append("});")
 		                                      .append(getNewLine());
-		sb.append("JoelPurra.PlusAsTab.plusAsTab($('body'));" + getNewLine());
+		sb.append("JoelPurra.PlusAsTab.plusAsTab($('body'));")
+		  .append(getNewLine());
 		return sb;
 	}
 
