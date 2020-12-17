@@ -27,7 +27,7 @@ public class PlusAsTabPageConfiguratorTest
 	@Test
 	public void configure()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		System.out.println(p.toString(0));
 
 		System.out.println(p.renderJavascript());
@@ -36,7 +36,7 @@ public class PlusAsTabPageConfiguratorTest
 	@Test
 	public void configureMin()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		WebReference.setUseMinAtEndOfExtension(true);
 		System.out.println(p.toString(0));
 	}
