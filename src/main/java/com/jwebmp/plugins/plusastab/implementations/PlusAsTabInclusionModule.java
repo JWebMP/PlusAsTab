@@ -12,7 +12,7 @@ public class PlusAsTabInclusionModule implements IGuiceScanModuleInclusions<Plus
 	public @NotNull Set<String> includeModules()
 	{
 		Set<String> set = new HashSet<>();
-		set.add("com.jwebmp.plugins.jqueryui");
+		set.add("com.jwebmp.plugins.plusastab");
 		return set;
 	}
 }
