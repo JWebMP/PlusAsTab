@@ -10,7 +10,7 @@
     <groupId>com.jwebmp.plugins.javascript</groupId>
     <artifactId>jwebmp-plus-as-tab</artifactId>
     <packaging>jar</packaging>
-
+    <version>0.0.0_0-SNAPSHOT</version>
     <name>Plus As Tab Plugin</name>
     <description>The JWebSwing implementation for Plus As Tab Plugin</description>
     <url>https://github.com/GedMarc/JWebSwing-JQueryPlusAsTabPlugin</url>
