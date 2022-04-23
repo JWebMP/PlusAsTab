@@ -18,6 +18,7 @@ package com.jwebmp.plugins.plusastab;
 
 import com.jwebmp.core.Page;
 import com.jwebmp.core.base.ComponentHierarchyBase;
+import com.jwebmp.core.base.angular.services.annotations.angularconfig.*;
 import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.PluginStatus;
@@ -49,41 +50,13 @@ import jakarta.validation.constraints.NotNull;
 		pluginStatus = PluginStatus.Released
 		
 )
+@NgScript("emulatetab.joelpurra/emulateTab.min.js")
+@NgScript("jquery-plusastab/src/plusastab.joelpurra.min.js")
 public class PlusAsTabPageConfigurator
 		implements IPageConfigurator<PlusAsTabPageConfigurator>
 {
-	/**
-	 * If this configurator is enabled
-	 */
-	private static boolean enabled = true;
-	
-	private static JavascriptReference jsReferenceEmulateTab = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
-	private  static  JavascriptReference jsReferencePlusAsTab = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
-
-	/**
-	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
-	 * <p>
-	 * If this configurator is enabled
-	 *
-	 * @return the enabled (type boolean) of this AngularAnimatedChangePageConfigurator object.
-	 */
-	public static boolean isEnabled()
-	{
-		return PlusAsTabPageConfigurator.enabled;
-	}
-
-	/**
-	 * Method setEnabled sets the enabled of this AngularAnimatedChangePageConfigurator object.
-	 * <p>
-	 * If this configurator is enabled
-	 *
-	 * @param mustEnable
-	 * 		the enabled of this AngularAnimatedChangePageConfigurator object.
-	 */
-	public static void setEnabled(boolean mustEnable)
-	{
-		PlusAsTabPageConfigurator.enabled = mustEnable;
-	}
+	//private static JavascriptReference jsReferenceEmulateTab = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
+	//private  static  JavascriptReference jsReferencePlusAsTab = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
 
 	/**
 	 * Skips the plus as tab option for the given field
@@ -95,51 +68,30 @@ public class PlusAsTabPageConfigurator
 	{
 		component.addAttribute("data-plus-as-tab", "false");
 	}
-
+	
+	/**
+	 * Skips the plus as tab option for the given field
+	 *
+	 * @param component
+	 */
+	@SuppressWarnings("unused")
+	public static void setOnComponent(ComponentHierarchyBase component)
+	{
+		component.addAttribute("data-plus-as-tab", "true");
+	}
+	
 	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
 	 public Page<?> configure(Page<?> page)
 	{
-		if (!page.isConfigured() && enabled())
-		{
-			page.getBody()
-			    .getJavascriptReferences()
-			    .add(jsReferenceEmulateTab);
-			page.getBody()
-			    .getJavascriptReferences()
-			    .add(jsReferencePlusAsTab);
-			page.getBody()
-			    .addFeature(new PlusAsTabFeature(page.getBody()));
-			page.getBody()
-			    .addAttribute("data-plus-as-tab", "true");
-		}
+	
 		return page;
-	}
-	
-	public static JavascriptReference getJsReferenceEmulateTab()
-	{
-		return jsReferenceEmulateTab;
-	}
-	
-	public static void setJsReferenceEmulateTab(JavascriptReference jsReferenceEmulateTab)
-	{
-		PlusAsTabPageConfigurator.jsReferenceEmulateTab = jsReferenceEmulateTab;
-	}
-	
-	public static JavascriptReference getJsReferencePlusAsTab()
-	{
-		return jsReferencePlusAsTab;
-	}
-	
-	public static void setJsReferencePlusAsTab(JavascriptReference jsReferencePlusAsTab)
-	{
-		PlusAsTabPageConfigurator.jsReferencePlusAsTab = jsReferencePlusAsTab;
 	}
 	
 	@Override
 	public boolean enabled()
 	{
-		return PlusAsTabPageConfigurator.enabled;
+		return true;
 	}
 }
