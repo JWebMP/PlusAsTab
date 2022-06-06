@@ -16,48 +16,52 @@
  */
 package com.jwebmp.plugins.plusastab;
 
-import com.jwebmp.core.Page;
-import com.jwebmp.core.base.ComponentHierarchyBase;
-import com.jwebmp.core.base.angular.services.annotations.angularconfig.*;
-import com.jwebmp.core.base.references.JavascriptReference;
-import com.jwebmp.core.plugins.PluginInformation;
-import com.jwebmp.core.plugins.PluginStatus;
-import com.jwebmp.core.services.IPageConfigurator;
-
-import jakarta.validation.constraints.NotNull;
+import com.jwebmp.core.*;
+import com.jwebmp.core.base.*;
+import com.jwebmp.core.base.angular.client.annotations.angularconfig.*;
+import com.jwebmp.core.base.angular.client.annotations.boot.*;
+import com.jwebmp.core.base.angular.client.annotations.typescript.*;
+import com.jwebmp.core.plugins.*;
+import com.jwebmp.core.services.*;
+import jakarta.validation.constraints.*;
 
 /**
  * @author GedMarc
  */
 @PluginInformation(pluginName = "Plus As Tab",
-		pluginUniqueName = "plus-as-tab",
-		pluginDescription = "Plus As Tab allows you to assign any key to mimic the same behaviour as pushing the 'tab' button. It will automatically trigger submit buttons",
-		pluginVersion = "0.2.2",
-		pluginDependancyUniqueIDs = "jquery",
-		pluginCategories = "plus-as-tab",
-		pluginSubtitle = "Make web and mobile pages 'enter'-friendly ",
-		pluginGitUrl = "https://github.com/joelpurra/plusastab.git",
-		pluginSourceUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin",
-		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin/wiki",
-		pluginOriginalHomepage = "https://github.com/joelpurra/plusastab",
-		pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.javascript/jwebmp-plus-as-tab",
-		pluginIconUrl = "bower_components/jquery-plusastab/logo.png",
-		pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
-		pluginLastUpdatedDate = "2017/03/04",
-		pluginGroupId = "com.jwebmp.plugins.javascript",
-		pluginArtifactId = "jwebmp-plus-as-tab",
-		pluginModuleName = "com.jwebmp.plugins.plusastab",
-		pluginStatus = PluginStatus.Released
-		
+                   pluginUniqueName = "plus-as-tab",
+                   pluginDescription = "Plus As Tab allows you to assign any key to mimic the same behaviour as pushing the 'tab' button. It will automatically trigger submit buttons",
+                   pluginVersion = "0.2.2",
+                   pluginDependancyUniqueIDs = "jquery",
+                   pluginCategories = "plus-as-tab",
+                   pluginSubtitle = "Make web and mobile pages 'enter'-friendly ",
+                   pluginGitUrl = "https://github.com/joelpurra/plusastab.git",
+                   pluginSourceUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin",
+                   pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin/wiki",
+                   pluginOriginalHomepage = "https://github.com/joelpurra/plusastab",
+                   pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.javascript/jwebmp-plus-as-tab",
+                   pluginIconUrl = "bower_components/jquery-plusastab/logo.png",
+                   pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
+                   pluginLastUpdatedDate = "2022/05/27",
+                   pluginGroupId = "com.jwebmp.plugins.javascript",
+                   pluginArtifactId = "jwebmp-plus-as-tab",
+                   pluginModuleName = "com.jwebmp.plugins.plusastab",
+                   pluginStatus = PluginStatus.Released
+
 )
-@NgScript("emulatetab.joelpurra/emulateTab.min.js")
-@NgScript("jquery-plusastab/src/plusastab.joelpurra.min.js")
+@NgScript("node_modules/jquery-emulatetab/src/emulateTab.joelpurra.js")
+@NgScript("plusastab/src/plusastab.joelpurra.js")
+
+@TsDependency(value = "jquery-emulatetab", version = "^0.2.9")
+@TsDependency(value = "plusastab", version = "^0.2.2")
+
+@NgBootConstructorBody("JoelPurra.PlusAsTab.setOptions({\n" +
+                       "\t\tkey: 13\n" +
+                       "\t});")
+@NgBootGlobalField("declare var JoelPurra : any;")
 public class PlusAsTabPageConfigurator
 		implements IPageConfigurator<PlusAsTabPageConfigurator>
 {
-	//private static JavascriptReference jsReferenceEmulateTab = new JavascriptReference("EmulateTab", 1.0, "emulatetab.joelpurra/emulateTab.min.js");
-	//private  static  JavascriptReference jsReferencePlusAsTab = new JavascriptReference("PlusAsTab", 1.0, "jquery-plusastab/src/plusastab.joelpurra.min.js");
-
 	/**
 	 * Skips the plus as tab option for the given field
 	 *
@@ -83,9 +87,9 @@ public class PlusAsTabPageConfigurator
 	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
-	 public Page<?> configure(Page<?> page)
+	public Page<?> configure(Page<?> page)
 	{
-	
+		setOnComponent(page.getBody());
 		return page;
 	}
 	
