@@ -21,6 +21,7 @@ import com.jwebmp.core.base.*;
 import com.jwebmp.core.base.angular.client.annotations.angularconfig.*;
 import com.jwebmp.core.base.angular.client.annotations.boot.*;
 import com.jwebmp.core.base.angular.client.annotations.typescript.*;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.plugins.*;
 import com.jwebmp.core.services.*;
 import jakarta.validation.constraints.*;
@@ -29,24 +30,24 @@ import jakarta.validation.constraints.*;
  * @author GedMarc
  */
 @PluginInformation(pluginName = "Plus As Tab",
-                   pluginUniqueName = "plus-as-tab",
-                   pluginDescription = "Plus As Tab allows you to assign any key to mimic the same behaviour as pushing the 'tab' button. It will automatically trigger submit buttons",
-                   pluginVersion = "0.2.2",
-                   pluginDependancyUniqueIDs = "jquery",
-                   pluginCategories = "plus-as-tab",
-                   pluginSubtitle = "Make web and mobile pages 'enter'-friendly ",
-                   pluginGitUrl = "https://github.com/joelpurra/plusastab.git",
-                   pluginSourceUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin",
-                   pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin/wiki",
-                   pluginOriginalHomepage = "https://github.com/joelpurra/plusastab",
-                   pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.javascript/jwebmp-plus-as-tab",
-                   pluginIconUrl = "bower_components/jquery-plusastab/logo.png",
-                   pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
-                   pluginLastUpdatedDate = "2022/05/27",
-                   pluginGroupId = "com.jwebmp.plugins.javascript",
-                   pluginArtifactId = "jwebmp-plus-as-tab",
-                   pluginModuleName = "com.jwebmp.plugins.plusastab",
-                   pluginStatus = PluginStatus.Released
+        pluginUniqueName = "plus-as-tab",
+        pluginDescription = "Plus As Tab allows you to assign any key to mimic the same behaviour as pushing the 'tab' button. It will automatically trigger submit buttons",
+        pluginVersion = "0.2.2",
+        pluginDependancyUniqueIDs = "jquery",
+        pluginCategories = "plus-as-tab",
+        pluginSubtitle = "Make web and mobile pages 'enter'-friendly ",
+        pluginGitUrl = "https://github.com/joelpurra/plusastab.git",
+        pluginSourceUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin",
+        pluginWikiUrl = "https://github.com/GedMarc/JWebMP-JQueryPlusAsTabPlugin/wiki",
+        pluginOriginalHomepage = "https://github.com/joelpurra/plusastab",
+        pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.javascript/jwebmp-plus-as-tab",
+        pluginIconUrl = "bower_components/jquery-plusastab/logo.png",
+        pluginIconImageUrl = "bower_components/jquery-plusastab/logo.png",
+        pluginLastUpdatedDate = "2022/05/27",
+        pluginGroupId = "com.jwebmp.plugins.javascript",
+        pluginArtifactId = "jwebmp-plus-as-tab",
+        pluginModuleName = "com.jwebmp.plugins.plusastab",
+        pluginStatus = PluginStatus.Released
 
 )
 @NgScript("node_modules/jquery-emulatetab/src/emulateTab.joelpurra.js")
@@ -56,46 +57,50 @@ import jakarta.validation.constraints.*;
 @TsDependency(value = "plusastab", version = "^0.2.2")
 
 @NgBootConstructorBody("JoelPurra.PlusAsTab.setOptions({\n" +
-                       "\t\tkey: 13\n" +
-                       "\t});")
+        "\t\tkey: 13\n" +
+        "\t});")
 @NgBootGlobalField("declare var JoelPurra : any;")
 public class PlusAsTabPageConfigurator
-		implements IPageConfigurator<PlusAsTabPageConfigurator>
+        implements IPageConfigurator<PlusAsTabPageConfigurator>
 {
-	/**
-	 * Skips the plus as tab option for the given field
-	 *
-	 * @param component
-	 */
-	@SuppressWarnings("unused")
-	public static void setSkipComponent(ComponentHierarchyBase component)
-	{
-		component.addAttribute("data-plus-as-tab", "false");
-	}
-	
-	/**
-	 * Skips the plus as tab option for the given field
-	 *
-	 * @param component
-	 */
-	@SuppressWarnings("unused")
-	public static void setOnComponent(ComponentHierarchyBase component)
-	{
-		component.addAttribute("data-plus-as-tab", "true");
-	}
-	
-	@NotNull
-	@Override
-	@SuppressWarnings("unchecked")
-	public Page<?> configure(Page<?> page)
-	{
-		setOnComponent(page.getBody());
-		return page;
-	}
-	
-	@Override
-	public boolean enabled()
-	{
-		return true;
-	}
+    /**
+     * Skips the plus as tab option for the given field
+     *
+     * @param component
+     */
+    @SuppressWarnings("unused")
+    public static void setSkipComponent(IComponentHierarchyBase<?, ?> component)
+    {
+        component.cast()
+                 .asAttributeBase()
+                 .addAttribute("data-plus-as-tab", "false");
+    }
+
+    /**
+     * Skips the plus as tab option for the given field
+     *
+     * @param component
+     */
+    @SuppressWarnings("unused")
+    public static void setOnComponent(IComponentHierarchyBase<?, ?> component)
+    {
+        component.cast()
+                 .asAttributeBase()
+                 .addAttribute("data-plus-as-tab", "true");
+    }
+
+    @NotNull
+    @Override
+    @SuppressWarnings("unchecked")
+    public IPage<?> configure(IPage<?> page)
+    {
+        setOnComponent(page.getBody());
+        return page;
+    }
+
+    @Override
+    public boolean enabled()
+    {
+        return true;
+    }
 }

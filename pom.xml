@@ -2,23 +2,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.guicedee</groupId>
-        <artifactId>dev-kit</artifactId>
+        <groupId>com.jwebmp</groupId>
+        <artifactId>parent</artifactId>
         <version>2.0.0-SNAPSHOT</version>
-        <relativePath>../../../../../../</relativePath>
     </parent>
-    <groupId>com.jwebmp.plugins.javascript</groupId>
-    <artifactId>jwebmp-plus-as-tab</artifactId>
+
+
+    <groupId>com.jwebmp.plugins</groupId>
+    <artifactId>plus-as-tab</artifactId>
     <packaging>jar</packaging>
     <version>2.0.0-SNAPSHOT</version>
     <name>Plus As Tab Plugin</name>
     <description>The JWebSwing implementation for Plus As Tab Plugin</description>
-    <url>https://github.com/GedMarc/JWebSwing-JQueryPlusAsTabPlugin</url>
-
-    <issueManagement>
-        <system>Github</system>
-        <url>https://github.com/GedMarc/JWebSwing-JQueryPlusAsTabPlugin/issues</url>
-    </issueManagement>
 
     <dependencies>
         <dependency>
@@ -27,23 +22,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jwebmp.plugins.angular</groupId>
-            <artifactId>angularts-client</artifactId>
+            <groupId>com.jwebmp.plugins</groupId>
+            <artifactId>typescript-client</artifactId>
         </dependency>
+
     </dependencies>
-
-    <scm>
-        <url>https://github.com/GedMarc?tab=repositories</url>
-    </scm>
-
-    <ciManagement>
-        <system>TeamCity</system>
-        <url>http://jwebmp.com/teamcity</url>
-    </ciManagement>
 
     <properties>
         <ignore.moditect>true</ignore.moditect>
-        <flatten.pom>false</flatten.pom>
+        <project.scm.nameUrl>/JWebMP/Plugins/PlusAsTab</project.scm.nameUrl>
     </properties>
 
     <dependencyManagement>
@@ -127,7 +114,8 @@
                     <include>**/*.xml</include>
                     <include>**/*.txt</include>
                 </includes>
-            </resource><resource>
+            </resource>
+            <resource>
                 <directory>jar-resources</directory>
                 <targetPath>${project.build.outputDirectory}/META-INF/resources/</targetPath>
                 <excludes>
@@ -150,32 +138,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-
-                <configuration>
-                    <flattenMode>ossrh</flattenMode>
-                    <flattenDependencyMode>direct</flattenDependencyMode>
-                    <detail>true</detail>
-                    <updatePomFile>true</updatePomFile>
-                    <flattenedPomFilename>flatter.pom</flattenedPomFilename>
-                </configuration>
-                <executions>
-                    <!-- enable flattening -->
-                    <execution>
-                        <id>flatten</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>flatten</goal>
-                        </goals>
-                    </execution>
-                    <!-- ensure proper cleanup -->
-                    <execution>
-                        <id>flatten.clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
