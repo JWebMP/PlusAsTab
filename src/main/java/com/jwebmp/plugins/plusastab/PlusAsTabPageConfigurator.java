@@ -71,7 +71,6 @@ public class PlusAsTabPageConfigurator
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public IPage<?> configure(IPage<?> page)
     {
         setOnComponent(page.getBody());
